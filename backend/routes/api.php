@@ -66,4 +66,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('morphologies', MorphologyController::class);
 });
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('hairstyles', HairstyleController::class);
+});
 
