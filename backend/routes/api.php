@@ -70,3 +70,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('hairstyles', HairstyleController::class);
 });
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('glasses', GlassesController::class);
+});
