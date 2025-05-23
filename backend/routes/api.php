@@ -63,4 +63,7 @@ use App\Http\Controllers\PaletteController;
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('palettes', PaletteController::class);
 });
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('morphologies', MorphologyController::class);
+});
 
