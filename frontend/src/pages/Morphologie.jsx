@@ -12,7 +12,15 @@ const morphologies = [
 
 export default function Morphologie() {
   const [selected, setSelected] = useState(null);
+  const [image, setImage] = useState(null);
   const navigate = useNavigate();
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage(URL.createObjectURL(file));
+    }
+  };
 
   const handleNext = () => {
     if (selected) {
@@ -28,6 +36,20 @@ export default function Morphologie() {
       <Navbar />
       <div className="container morphologie-page">
         <h2 className="text-center my-4">Quelle est votre morphologie ?</h2>
+
+        {/* Upload de l'image */}
+        <div className="mb-4">
+          <label className="form-label">Uploader votre photo (optionnel)</label>
+          <input type="file" accept="image/*" className="form-control" onChange={handleFileChange} />
+        </div>
+
+        {image && (
+          <div className="text-center mb-4">
+            <img src={image} alt="Uploaded" className="img-fluid rounded" width="200" />
+          </div>
+        )}
+
+        {/* Sélection de morphologie */}
         <div className="row justify-content-center">
           {morphologies.map(m => (
             <div
@@ -40,6 +62,8 @@ export default function Morphologie() {
             </div>
           ))}
         </div>
+
+        {/* Bouton suivant */}
         <div className="text-center mt-4">
           <button className="btn btn-success" onClick={handleNext}>Suivant</button>
         </div>
