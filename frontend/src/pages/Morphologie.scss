@@ -1,0 +1,22 @@
+.morphologie-page {
+    .morpho-card {
+      border: 2px solid transparent;
+      padding: 10px;
+      margin: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  
+      &:hover {
+        border-color: #007bff;
+        transform: scale(1.03);
+      }
+  
+      &.selected {
+        border-color: #28a745;
+        background-color: #e8f5e9;
+      }
+    }
+  }
+  
