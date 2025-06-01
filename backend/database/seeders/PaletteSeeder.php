@@ -1,4 +1,14 @@
 <?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class PaletteSeeder extends Seeder
+{
+    public function run(): void
+    {
 DB::table('palettes')->insert([
     [
         'skin_tone' => 'Fair',
@@ -37,3 +47,5 @@ DB::table('palettes')->insert([
         'description' => 'Teint foncé: Les tons pastel et doux apportent un beau contraste et mettent en valeur votre peau.',
     ],
 ]);
+    }
+}

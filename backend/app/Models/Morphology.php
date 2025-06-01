@@ -9,6 +9,10 @@ class Morphology extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description'];
-}
+    protected $fillable = ['name', 'description', 'image_url'];
 
+    public function vetements()
+    {
+        return $this->hasMany(Vetement::class);
+    }
+}

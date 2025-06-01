@@ -8,9 +8,10 @@ class Vetement extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['style', 'image'];
+    protected $fillable = ['name', 'image', 'morphology_id'];
 
-    public function favoris() {
-        return $this->hasMany(Favori::class);
+    public function morphology()
+    {
+        return $this->belongsTo(Morphology::class);
     }
 }

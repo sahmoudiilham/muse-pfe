@@ -14,8 +14,9 @@ class Authenticate extends Middleware
      */
     protected function redirectTo($request)
     {
-     if (! $request->expectsJson()) {
-        return response()->json(['message' => 'Non authentifié'], 401);
-    }
+        // جميع الطلبات ديال API كاتنتظر JSON، خاصك ترد null
+        if (! $request->expectsJson()) {
+            return null;
+        }
     }
 }

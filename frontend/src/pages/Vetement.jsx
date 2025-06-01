@@ -1,64 +1,50 @@
-import React, { useState } from "react";
-import "../styles/Vetement.scss"; // استعملي SCSS هنا
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const Vetement = () => {
-  const vetements = [
-    {
-      id: 1,
-      morpho: "Sablier",
-      image: "/images/vetements/sablier1.jpg"
-    },
-    {
-      id: 2,
-      morpho: "Rectangle",
-      image: "/images/vetements/blazer1.jpg"
-    },
-    {
-      id: 3,
-      morpho: "Pomme",
-      image: "/images/vetements/tunique1.jpg"
-    },
-    {
-      id: 4,
-      morpho: "Poire",
-      image: "/images/vetements/haut1.jpg"
-    },
-    {
-      id: 5,
-      morpho: "Triangle inversé",
-      image: "/images/vetements/pantalon1.jpg"
+const Vetements = () => {
+  const [vetements, setVetements] = useState([]);
+  const [filteredVetements, setFilteredVetements] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/vetements")
+      .then((res) => {
+        setVetements(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error("Erreur chargement vetements:", err);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    const selectedMorpho = localStorage.getItem("selectedMorpho");
+    if (selectedMorpho) {
+      const filtered = vetements.filter(
+        (v) => v.morphology && v.morphology.name === selectedMorpho
+      );
+      setFilteredVetements(filtered);
+    } else {
+      setFilteredVetements(vetements);
     }
-    // ... زيدي الباقي
-  ];
+  }, [vetements]);
 
-  const selectedMorpho = JSON.parse(localStorage.getItem("selectedMorpho"));
-  const [favoris, setFavoris] = useState(
-    JSON.parse(localStorage.getItem("favoris")) || []
-  );
+  if (loading) return <p>Chargement...</p>;
 
-  const handleLike = (item) => {
-    const updated = [...favoris, item];
-    setFavoris(updated);
-    localStorage.setItem("favoris", JSON.stringify(updated));
-  };
-
-  const displayed = selectedMorpho
-    ? vetements.filter((v) => v.morpho === selectedMorpho.name)
-    : vetements;
+  if (filteredVetements.length === 0)
+    return <p>Aucun vêtement pour cette morphologie.</p>;
 
   return (
-    <div className="vetement-page">
-      <h1>
-        {selectedMorpho
-          ? `Vêtements pour morphologie : ${selectedMorpho.name}`
-          : "Tous les vêtements"}
-      </h1>
-      <div className="vetement-grid">
-        {displayed.map((item) => (
-          <div key={item.id} className="vetement-card">
-            <img src={item.image} alt={`vetement-${item.id}`} />
-            <p className="morpho-label">{item.morpho}</p>
-            <button onClick={() => handleLike(item)} className="like-btn">❤️</button>
+    <div className="vetements-container">
+      <h1>Vêtements pour votre morphologie</h1>
+      <div className="vetements-grid">
+        {filteredVetements.map((v) => (
+          <div className="vetement-card" key={v.id}>
+            <img src={`http://localhost:8000/storage/${v.image_url}`} alt={v.name} />
+            <h2>{v.name}</h2>
+            <p>{v.description}</p>
           </div>
         ))}
       </div>
@@ -66,4 +52,4 @@ const Vetement = () => {
   );
 };
 
-export default Vetement;
+export default Vetements;

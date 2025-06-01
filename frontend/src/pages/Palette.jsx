@@ -7,17 +7,34 @@ export default function Palette() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/palettes')
-      .then(res => res.json())
-      .then(data => {
-        setPalettes(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error('Error fetching palettes:', err);
-        setLoading(false);
-      });
-  }, []);
+  const token = localStorage.getItem('token');
+  if (!token) {
+    // المستخدم ما مسجلش الدخول، redirect لصفحة login
+    window.location.href = "/login";
+    return;
+  }
+  fetch('http://localhost:8000/api/palettes', {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+      'Accept': 'application/json'
+    }
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error('Unauthorized or error fetching palettes');
+      }
+      return res.json();
+    })
+    .then(data => {
+      setPalettes(data);
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error('Error fetching palettes:', err);
+      setLoading(false);
+    });
+}, []);
+
 
   const handleSelect = (palette) => {
     setSelected(palette);

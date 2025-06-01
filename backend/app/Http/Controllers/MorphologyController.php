@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Morphology;
@@ -12,19 +11,20 @@ class MorphologyController extends Controller
         return Morphology::all();
     }
 
+    public function show(Morphology $morphology)
+    {
+        return $morphology;
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image_url' => 'nullable|string',
         ]);
 
         return Morphology::create($validated);
-    }
-
-    public function show(Morphology $morphology)
-    {
-        return $morphology;
     }
 
     public function update(Request $request, Morphology $morphology)
@@ -32,6 +32,7 @@ class MorphologyController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
+            'image_url' => 'nullable|string',
         ]);
 
         $morphology->update($validated);
@@ -41,6 +42,6 @@ class MorphologyController extends Controller
     public function destroy(Morphology $morphology)
     {
         $morphology->delete();
-        return response()->json(['message' => 'Deleted successfully']);
+        return response()->json(['message' => 'Supprimée avec succès']);
     }
 }

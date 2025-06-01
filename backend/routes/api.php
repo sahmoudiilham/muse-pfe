@@ -24,17 +24,6 @@ use App\Http\Controllers\PaletteController;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/auth/login', [AuthController::class, 'login']);
 
-// ✅ Public route for palettes
-Route::get('/palettes', [PaletteController::class, 'index']);
-Route::get('/palettes/{id}', [PaletteController::class, 'show']);
-
-Route::apiResource('posts', PostController::class);
-Route::apiResource('favoris', FavoriController::class);
-Route::apiResource('vetements', VetementController::class);
-Route::apiResource('palettes', PaletteController::class);
-Route::apiResource('visages', VisageController::class);
-Route::apiResource('messages-ia', MessageIAController::class);
-
 /*
 |--------------------------------------------------------------------------
 | Protected Routes (need token)
@@ -46,7 +35,12 @@ Route::middleware('auth:sanctum')->group(function () {
     });
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::apiResource('palettes', PaletteController::class)->except(['index', 'show']); // ← index & show public
+    Route::apiResource('posts', PostController::class);
+    Route::apiResource('favoris', FavoriController::class);
+    Route::apiResource('vetements', VetementController::class);
+    Route::apiResource('palettes', PaletteController::class);
+    Route::apiResource('visages', VisageController::class);
+    Route::apiResource('messages-ia', MessageIAController::class);
     Route::apiResource('morphologies', MorphologyController::class);
     Route::apiResource('hairstyles', HairstyleController::class);
     Route::apiResource('glasses', GlassesController::class);

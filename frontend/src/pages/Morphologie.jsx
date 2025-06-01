@@ -1,50 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "../styles/Morphologie.scss";
-
-const morphologies = [
-  {
-    name: "Sablier",
-    description: "Taille marquée, épaules et hanches équilibrées.",
-    image: "/images/morphologies/sablier.jpg",
-  },
-  {
-    name: "Rectangle",
-    description: "Épaules, taille et hanches alignées.",
-    image: "/images/rectangle.jpg",
-  },
-  {
-    name: "Pomme",
-    description: "Volume concentré sur le haut du corps.",
-    image: "/images/pomme.jpg",
-  },
-  {
-    name: "Poire",
-    description: "Hanches plus larges que les épaules.",
-    image: "/images/poire.jpg",
-  },
-  {
-    name: "Triangle inversé",
-    description: "Épaules larges, hanches étroites.",
-    image: "/images/triangle.jpg",
-  },
-];
 
 const Morphologie = () => {
   const navigate = useNavigate();
+  const [morphologies, setMorphologies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-const handleSelect = (morpho) => {
-  localStorage.setItem("selectedMorpho", morpho.name);
-  window.location.href = "/vetements";
-};
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/morphologies")
+      .then((res) => {
+        setMorphologies(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Erreur lors du chargement des morphologies");
+        setLoading(false);
+      });
+  }, []);
+
+  const handleSelect = (morpho) => {
+    localStorage.setItem("selectedMorpho", morpho.name);
+    navigate("/vetement"); // توجيه لصفحة الملابس باستخدام react-router
+  };
+
+  if (loading) return <p>Chargement...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="morpho-container">
       <h1>Choisissez votre morphologie</h1>
       <div className="morpho-grid">
-        {morphologies.map((m, i) => (
-          <div className="morpho-card" key={i}>
-            <img src={m.image} alt={m.name} />
+        {morphologies.map((m) => (
+          <div className="morpho-card" key={m.id}>
+            <img
+              src={`http://localhost:8000/storage/${m.image_url}`}
+              alt={m.name}
+              style={{ width: "200px", height: "auto", borderRadius: "8px" }}
+            />
             <h2>{m.name}</h2>
             <p>{m.description}</p>
             <button onClick={() => handleSelect(m)}>Choisir</button>

@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-       Schema::create('vetements', function (Blueprint $table) {
+      Schema::create('vetements', function (Blueprint $table) {
     $table->id();
-    $table->string('style');
-    $table->string('image')->nullable();
+    $table->string('name');
+    $table->string('image')->nullable(); // باش تخزن اسم الصورة أو مسارها
+    $table->foreignId('morphology_id')->constrained('morphologies')->onDelete('cascade');
     $table->timestamps();
 });
+
 
     }
 

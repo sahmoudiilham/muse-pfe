@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
 {
     $this->call([
         PaletteSeeder::class,
+        MorphologySeeder::class,
     ]);
 }
+
 }
