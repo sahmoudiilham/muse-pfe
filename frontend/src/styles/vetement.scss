@@ -1,0 +1,178 @@
+.vetement-page {
+  padding: 2rem;
+  text-align: center;
+
+  h1 {
+    color: #b45f8a;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: #444;
+  }
+}
+.vetement-page {
+  padding: 20px;
+
+  h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .vetement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+  }
+
+  .vetement-card {
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    position: relative;
+
+    img {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .morpho-label {
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .like-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}
+
+.vetement-container {
+  padding: 2rem;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .vetement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .vetement-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+    img {
+      max-width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin-top: 1rem;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .categorie {
+      font-size: 14px;
+      color: #777;
+      margin: 0.5rem 0;
+    }
+
+    button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+
+      &:hover {
+        background-color: #e60000;
+      }
+    }
+  }
+}.vetement-container {
+  padding: 2rem;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: #444;
+  }
+
+  .vetement-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .vetement-card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: #fff;
+    text-align: center;
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    h2 {
+      margin: 0.7rem 0 0.3rem;
+      font-size: 1.1rem;
+    }
+
+    .categorie {
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    button {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      color: #ff4d4d;
+
+      &:hover {
+        color: #e60000;
+      }
+    }
+  }
+}
+

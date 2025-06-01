@@ -1,8 +1,13 @@
-// src/styles/main.scss
-
-$main-color: #34568B;
-
-body {
-  background-color: #f8f9fa;
-  font-family: 'Segoe UI', sans-serif;
-}
+@import './Navbar.scss';
+@import './Footer.scss';
+@import './chat.scss';
+@import './home.scss'; 
+@import './login.scss';
+@import './Register.scss';
+@import './morphologie.scss';
+@import './palette.scss';
+@import "./vetement.scss";
+@import "./favoris.scss";
+@import './visage.scss';
+@import './coiffure.scss';
+@import './lunette.scss';

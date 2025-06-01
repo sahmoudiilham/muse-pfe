@@ -1,0 +1,45 @@
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background-color: #fdfdfd;
+  padding: 2rem;
+
+  .home-welcome {
+    text-align: center;
+    max-width: 600px;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #333;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #666;
+    }
+
+    .home-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+
+      a {
+        text-decoration: none;
+        background-color: #5b8def;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 10px;
+        font-weight: bold;
+        transition: 0.3s;
+
+        &:hover {
+          background-color: #477ee7;
+        }
+      }
+    }
+  }
+}

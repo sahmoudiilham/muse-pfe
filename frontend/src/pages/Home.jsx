@@ -1,15 +1,22 @@
-import Navbar from '../components/Navbar';
-import './Home.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import "../styles/home.scss";
 
-export default function Home() {
+const Home = () => {
   return (
-    <>
-      <Navbar />
-      <div className="hero-container text-center p-5">
-        <h1>Bienvenue sur Muse</h1>
-        <p>Découvrez votre style idéal ✨</p>
-        <a href="/morphologie" className="btn btn-primary mt-3">Commencer</a>
+    <div className="home">
+      <div className="home-welcome">
+        <h1>Bienvenue sur Muse 💄</h1>
+        <p>
+          Découvrez les vêtements, couleurs et accessoires qui vous mettent en valeur.
+        </p>
+        <div className="home-links">
+          <Link to="/morphologie">Commencer mon analyse</Link>
+          <Link to="/chat">Parler avec l'assistante IA</Link>
+        </div>
       </div>
-    </>
+    </div>
   );
-}
+};
+
+export default Home;

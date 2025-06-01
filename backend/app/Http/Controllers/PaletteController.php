@@ -1,46 +1,74 @@
-<?php 
+<?php
 namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
 use App\Models\Palette;
 use Illuminate\Http\Request;
-
 class PaletteController extends Controller
 {
-    public function index() {
-        return Palette::all();
+    // List all palettes
+    public function index()
+    {
+        return response()->json(Palette::all());
+    }
+    
+
+
+    // Show one palette
+    public function show($id)
+    {
+        $palette = Palette::find($id);
+        if (!$palette) {
+            return response()->json(['message' => 'Palette not found'], 404);
+        }
+        return response()->json($palette);
     }
 
-    public function store(Request $request) {
+    // Store new palette
+    public function store(Request $request)
+    {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'colors' => 'required|array',
+            'skin_tone' => 'required|string|max:255',
+            'skin_color' => 'required|string|regex:/^#([A-Fa-f0-9]{6})$/',
+            'colors' => 'required|array|min:1',
+            'colors.*' => ['required', 'string', 'regex:/^#([A-Fa-f0-9]{6})$/'],
+            'description' => 'nullable|string',
         ]);
 
-        $palette = Palette::create([
-            'name' => $request->name,
-            'colors' => $request->colors,
-            'description' => $request->description,
-        ]);
+        $palette = Palette::create($request->all());
 
         return response()->json($palette, 201);
     }
 
-    public function show(Palette $palette) {
-        return $palette;
-    }
+    // Update palette
+    public function update(Request $request, $id)
+    {
+        $palette = Palette::find($id);
+        if (!$palette) {
+            return response()->json(['message' => 'Palette not found'], 404);
+        }
 
-    public function update(Request $request, Palette $palette) {
         $request->validate([
-            'name' => 'sometimes|string|max:255',
-            'colors' => 'sometimes|array',
+            'skin_tone' => 'sometimes|required|string|max:255',
+            'skin_color' => 'sometimes|required|string|regex:/^#([A-Fa-f0-9]{6})$/',
+            'colors' => 'sometimes|required|array|min:1',
+            'colors.*' => ['required', 'string', 'regex:/^#([A-Fa-f0-9]{6})$/'],
+            'description' => 'nullable|string',
         ]);
 
         $palette->update($request->all());
 
-        return $palette;
+        return response()->json($palette);
     }
 
-    public function destroy(Palette $palette) {
+    // Delete palette
+    public function destroy($id)
+    {
+        $palette = Palette::find($id);
+        if (!$palette) {
+            return response()->json(['message' => 'Palette not found'], 404);
+        }
         $palette->delete();
-        return response()->json(null, 204);
+        return response()->json(['message' => 'Palette deleted']);
     }
 }

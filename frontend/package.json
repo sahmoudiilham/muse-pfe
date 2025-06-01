@@ -10,10 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.6",
+    "axios": "^1.9.0",
+    "colorthief": "^2.6.0",
+    "html-to-image": "^1.11.13",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.0"
+    "react-router-dom": "^7.6.1",
+    "react-share": "^5.2.2",
+    "react-webcam": "^7.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
@@ -25,9 +29,9 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
-    "postcss": "^8.5.3",
+    "postcss": "^8.5.4",
     "sass": "^1.89.0",
-    "tailwindcss": "^4.1.7",
+    "tailwindcss": "^4.1.8",
     "vite": "^6.3.5"
   }
 }

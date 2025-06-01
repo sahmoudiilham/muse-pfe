@@ -42,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function morphologie() {
+    return $this->belongsTo(Morphology::class);
+}
+
+public function palette() {
+    return $this->belongsTo(Palette::class);
+}
+
+public function favoris() {
+    return $this->hasMany(Favori::class);
+}
+
+public function visage() {
+    return $this->hasOne(Visage::class);
+}
+
 }
