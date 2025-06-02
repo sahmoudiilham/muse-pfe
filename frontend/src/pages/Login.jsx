@@ -2,12 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../styles/login.scss";
+import { useAuth } from "../context/AuthContext";
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,9 +24,8 @@ const Login = () => {
       localStorage.setItem("token", token);
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-    
-      navigate("/");
+      login(token);
+      navigate("/home");
     } catch (err) {
       console.error(err);
       setError("Email ou mot de passe incorrect");

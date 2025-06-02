@@ -1,34 +1,81 @@
-/* morphologie.scss */
-.morphologie-container {
-  padding: 20px;
-  text-align: center;
-}
-
-.morphologie-options {
+.morpho-container {
+  padding: 4rem 2rem;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #fdfaf6, #f4eae0);
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
 
-.option {
-  cursor: pointer;
-  padding: 10px;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-}
+  h1 {
+    font-size: 2.8rem;
+    color: #5e4b3c;
+    margin-bottom: 3rem;
+    font-weight: 600;
+    text-align: center;
+  }
 
-.option:hover {
-  transform: scale(1.05);
-}
+  .morpho-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1100px;
+    padding: 0 1rem;
+  }
 
-.option.selected {
-  border-color: #007bff;
-  box-shadow: 0 0 10px #007bff;
-}
+  .morpho-card {
+    background-color: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 20px rgba(200, 180, 160, 0.15);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
 
-.message {
-  margin-bottom: 15px;
-  color: green;
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 24px rgba(180, 160, 140, 0.2);
+    }
+
+    img {
+      width: 100%;
+      max-width: 220px;
+      height: auto;
+      border-radius: 16px;
+      margin-bottom: 1.2rem;
+      object-fit: cover;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: #5e4b3c;
+      margin-bottom: 0.6rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      color: #7a6e61;
+      text-align: center;
+      margin-bottom: 1.4rem;
+      line-height: 1.4;
+    }
+
+    button {
+      padding: 0.6rem 1.4rem;
+      font-size: 1rem;
+      background-color: #e6d5c3;
+      color: #5e4b3c;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background-color: #d4bfae;
+        color: #fff;
+      }
+    }
+  }
 }

@@ -5,10 +5,9 @@ import Footer from "./components/Footer";
 import axios from "axios";
 
 function App() {
-  // هنا كنجبدو token من localStorage وكنحطوه ف axios headers
   const token = localStorage.getItem("token");
   if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }
 
   return (
