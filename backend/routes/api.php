@@ -33,8 +33,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
+    Route::post('/vetements/{id}/like', [VetementController::class, 'like']);
     Route::post('/logout', [AuthController::class, 'logout']);
-
+    Route::get('/vetements/morphology/{name}', [VetementController::class, 'getByMorphology']);
     Route::apiResource('posts', PostController::class);
     Route::apiResource('favoris', FavoriController::class);
     Route::apiResource('vetements', VetementController::class);

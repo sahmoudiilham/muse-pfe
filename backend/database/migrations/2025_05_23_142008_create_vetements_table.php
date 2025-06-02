@@ -17,6 +17,7 @@ return new class extends Migration
     $table->id();
     $table->string('name');
     $table->string('image')->nullable(); // باش تخزن اسم الصورة أو مسارها
+    $table->integer('likes')->default(0);
     $table->foreignId('morphology_id')->constrained('morphologies')->onDelete('cascade');
     $table->timestamps();
 });

@@ -1,61 +1,93 @@
+@import "./variables";
+
 .register-page {
+  height: 100vh;
+  background: linear-gradient(135deg, #f5f0e6, #d6b8a5);
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 70vh;
-  background-color: #f4f4f4;
-}
-.error {
-  color: red;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
-}
+  padding: 1rem;
 
-
-.register-form {
-  background-color: white;
-  padding: 2.5rem;
-  border-radius: 1rem;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 450px;
-
-  h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #333;
-  }
-
-  label {
-    display: block;
-    margin-top: 1rem;
-    font-weight: bold;
-    color: #555;
-  }
-
-  input {
+  .register-form {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 1.8rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
     width: 100%;
-    padding: 0.7rem;
-    border-radius: 0.5rem;
-    border: 1px solid #ccc;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    font-size: 1rem;
-  }
+    max-width: 420px;
+    font-family: $font;
+    color: $text;
+    animation: fadeInScale 0.8s ease forwards;
 
-  button {
-    width: 100%;
-    background-color: #5b8def;
-    color: white;
-    padding: 0.8rem;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-
-    &:hover {
-      background-color: #477ee7;
+    h2 {
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      font-weight: 700;
+      color: $accent;
+      text-align: center;
+      letter-spacing: 1.2px;
     }
+
+    label {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: darken($text, 20%);
+    }
+
+    input {
+      width: 90%;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.2rem;
+      border: 2px solid lighten($accent, 20%);
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $accent;
+        box-shadow: 0 0 8px rgba(196, 169, 149, 0.6);
+      }
+
+      &::placeholder {
+        color: lighten($text, 30%);
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem 0;
+      background-color: $accent;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+
+      &:hover {
+        background-color: darken($accent, 10%);
+        transform: scale(1.05);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+    }
+  }
+}
+
+// نفس animation ديال login
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

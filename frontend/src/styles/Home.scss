@@ -1,45 +1,89 @@
-.home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 70vh;
-  background-color: #fdfdfd;
-  padding: 2rem;
+@import "./variables";
+$background: #f8f4f1;
+$text: #3e3e3e;
+$accent: #d6b8a5;
+$link-bg: #e8ddd7;
+$link-hover: #d1b0a3;
 
+body, html {
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  font-family: $font;
+}
+.home {
+  height: 100vh;
+  background: $background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow-x: hidden;
   .home-welcome {
     text-align: center;
-    max-width: 600px;
+    background: white;
+    padding: 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-out;
 
     h1 {
       font-size: 2.5rem;
+      color: $text;
       margin-bottom: 1rem;
-      color: #333;
+      animation: popIn 0.8s ease-out;
     }
 
     p {
+      color: $text;
       font-size: 1.2rem;
       margin-bottom: 2rem;
-      color: #666;
+      line-height: 1.6;
     }
 
     .home-links {
       display: flex;
+      flex-direction: column;
       gap: 1rem;
-      justify-content: center;
 
       a {
+        background-color: $link-bg;
+        color: $text;
+        padding: 1rem 2rem;
+        border-radius: 1.5rem;
         text-decoration: none;
-        background-color: #5b8def;
-        color: white;
-        padding: 0.8rem 1.5rem;
-        border-radius: 10px;
-        font-weight: bold;
-        transition: 0.3s;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 
         &:hover {
-          background-color: #477ee7;
+          background-color: $link-hover;
+          transform: scale(1.05);
         }
       }
     }
+  }
+}
+
+// ✨ Animation harbaaaaana
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }

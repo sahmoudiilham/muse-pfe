@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/Navbar.scss";
 
@@ -16,17 +16,35 @@ const Navbar = () => {
       <div className="logo">
         <Link to="/home">Muse</Link>
       </div>
+
       <ul className="nav-links">
         {user ? (
           <>
-            <li><Link to="/morphologie">Morphologie</Link></li>
-            <li><Link to="/palette">Palette</Link></li>
-            <li><Link to="/vetements">Vêtements</Link></li>
-            <li><Link to="/coiffure">Coiffure</Link></li>
-            <li><Link to="/lunette">Lunettes</Link></li>
-            <li><Link to="/visage">Visage</Link></li>
-            <li><Link to="/favoris">Favoris</Link></li>
-            <li><Link to="/chat">Chat IA</Link></li>
+            {[
+              "morphologie",
+              "palette",
+              "vetements",
+              "coiffure",
+              "lunette",
+              "visage",
+              "favoris",
+              "chat",
+            ].map((path) => (
+              <li key={path}>
+                <NavLink
+  to={`/${path}`}
+  className={({ isActive }) => (isActive ? "active" : "")}
+  onClick={() => {
+    if (path === "vetements") {
+      localStorage.removeItem("selectedMorpho"); // هاهنا نحيدو morpho من التخزين
+    }
+  }}
+>
+  {path.charAt(0).toUpperCase() + path.slice(1)}
+</NavLink>
+  
+              </li>
+            ))}
             <li>
               <button className="logout-btn" onClick={handleLogout}>
                 Logout
@@ -35,8 +53,22 @@ const Navbar = () => {
           </>
         ) : (
           <>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Register</Link></li>
+            <li>
+              <NavLink
+                to="/login"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/register"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Register
+              </NavLink>
+            </li>
           </>
         )}
       </ul>

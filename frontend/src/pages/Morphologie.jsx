@@ -24,7 +24,9 @@ const Morphologie = () => {
 
   const handleSelect = (morpho) => {
     localStorage.setItem("selectedMorpho", morpho.name);
-    navigate("/vetement"); // توجيه لصفحة الملابس باستخدام react-router
+    navigate("/vetements"); 
+    
+
   };
 
   if (loading) return <p>Chargement...</p>;

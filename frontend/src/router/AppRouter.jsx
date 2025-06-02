@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Morphologie from "../pages/Morphologie";
 import Palette from "../pages/Palette";
-import Vetement from "../pages/Vetement";
+import Vetements from "../pages/Vetement";
 import Favoris from "../pages/Favoris";
 import Visage from "../pages/Visage";
 import Coiffure from "../pages/Coiffure";
@@ -53,10 +53,10 @@ const AppRouter = () => {
         }
       />
       <Route
-        path="/vetement"
+        path="/vetements"
         element={
           <PrivateRoute>
-            <Vetement />
+            <Vetements />
           </PrivateRoute>
         }
       />

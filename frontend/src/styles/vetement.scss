@@ -1,178 +1,115 @@
-.vetement-page {
-  padding: 2rem;
-  text-align: center;
+@import "./variables"; // استعملنا المتغيرات ديالك إلى عندك
 
+.vetements-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding-top: 1%;
+  font-family: $font;  // استعملنا نفس الخط
+  color: $text; // نص باللون الأساسي ديالك
+  
   h1 {
-    color: #b45f8a;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  p {
-    font-size: 1.1rem;
-    color: #444;
-  }
-}
-.vetement-page {
-  padding: 20px;
-
-  h1 {
-    margin-bottom: 20px;
-    font-size: 24px;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #5a4a42; // لون بني هادي ناعم
     text-align: center;
   }
 
-  .vetement-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 20px;
-  }
-
-  .vetement-card {
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    padding: 10px;
-    text-align: center;
-    position: relative;
-
-    img {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .morpho-label {
-      margin-top: 8px;
-      font-weight: bold;
-    }
-
-    .like-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: transparent;
-      border: none;
-      font-size: 20px;
-      cursor: pointer;
-
-      &:hover {
-        color: red;
-      }
-    }
-  }
-}
-
-.vetement-container {
-  padding: 2rem;
-
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .vetement-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .vetement-card {
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-
-    img {
-      max-width: 100%;
-      height: 250px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-
-    h2 {
-      margin-top: 1rem;
-      font-size: 18px;
-      color: #333;
-    }
-
-    .categorie {
-      font-size: 14px;
-      color: #777;
-      margin: 0.5rem 0;
-    }
-
-    button {
-      background-color: #ff4d4d;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 0.5rem;
-
-      &:hover {
-        background-color: #e60000;
-      }
-    }
-  }
-}.vetement-container {
-  padding: 2rem;
-
-  h1 {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    color: #444;
-  }
-
-  .vetement-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .vetement-card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 1rem;
-    background-color: #fff;
-    text-align: center;
-    transition: all 0.3s;
+  button {
+    display: block;
+    margin: 0 auto 2rem;
+    background-color: #d6bfa6; // لون نود دافئ
+    color: #5a4a42;
+    font-weight: 600;
+    border: none;
+    border-radius: 25px;
+    padding: 0.6rem 1.8rem;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(214, 191, 166, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      background-color: #b89a81;
+      box-shadow: 0 6px 12px rgba(184, 154, 129, 0.5);
+    }
+  }
+
+  .vetements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .vetement-card {
+    background: rgba(246, 240, 233, 0.8); // خلفية ناعمة نودية شفافة
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(184, 154, 129, 0.15);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px rgba(184, 154, 129, 0.35);
     }
 
     img {
       width: 100%;
-      height: 230px;
+      height: 220px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 8px rgba(214, 191, 166, 0.4);
+    }
+
+    p {
+      margin: 0.3rem 0;
+      color: #7d6b5c; // لون بني فاتح للنصوص الثانوية
+      font-size: 0.9rem;
+      font-weight: 600;
+      user-select: none;
     }
 
     h2 {
-      margin: 0.7rem 0 0.3rem;
-      font-size: 1.1rem;
-    }
-
-    .categorie {
-      font-size: 0.85rem;
-      color: #777;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 0.5rem 0 0.8rem;
+      color: #5a4a42;
+      text-align: center;
     }
 
     button {
-      background: none;
+      background-color: #cbb49a;
+      color: #5a4a42;
       border: none;
-      font-size: 1.4rem;
+      border-radius: 20px;
+      padding: 0.5rem 1.5rem;
+      font-weight: 600;
       cursor: pointer;
-      margin-top: 0.5rem;
-      color: #ff4d4d;
+      transition: background-color 0.3s ease;
 
       &:hover {
-        color: #e60000;
+        background-color: #b39b7f;
       }
     }
   }
 }
 
+/* Responsive */
+@media (max-width: 768px) {
+  .vetements-container {
+    padding: 0 1rem;
+
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    .vetements-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+  }
+}
