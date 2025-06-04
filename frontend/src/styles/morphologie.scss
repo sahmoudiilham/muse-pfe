@@ -1,82 +1,138 @@
+@import 'variables';
+
 .morpho-container {
-  padding: 4rem 2rem;
-  min-height: 100vh;
-  background: linear-gradient(to bottom, #fdfaf6, #f4eae0);
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  font-family: $font-body;
+  color: $text-primary;
+  animation: fadeIn $transition-speed * 2 $transition-ease;
+}
+
+h1 {
+  font-family: $font-display;
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: $color-brown-dark;
+  margin-bottom: 2.5rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90px;
+    height: 3px;
+    background-color: $accent-color;
+    border-radius: 2px;
+  }
+}
+
+.morpho-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.morpho-card {
+  background: $background-card;
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-light;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  transition: transform $transition-speed $transition-ease, box-shadow $transition-speed $transition-ease;
+  overflow: hidden;
 
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: $shadow-medium;
+  }
+
+  img {
+    width: 100%;
+    max-width: 250px; // Limite la taille de l'image
+    height: 250px; // Hauteur fixe
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 10px rgba($color-brown-dark, 0.15);
+  }
+
+  h2 {
+    font-family: $font-display;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0.8rem;
+    color: $color-brown-dark;
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: $text-secondary;
+    flex-grow: 1; // Permet aux descriptions de prendre l'espace disponible
+    margin-bottom: 1.5rem;
+  }
+
+  button {
+    background-color: $accent-color;
+    color: $text-light;
+    border: none;
+    border-radius: 30px;
+    padding: 0.8rem 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: $transition-smooth;
+    box-shadow: $shadow-gold;
+
+    &:hover {
+      background-color: $accent-hover;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba($color-gold-light, 0.4);
+    }
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .morpho-container {
+    padding: 0 1rem;
+    margin-top: 2rem;
+  }
 
   h1 {
-    font-size: 2.8rem;
-    color: #5e4b3c;
-    margin-bottom: 3rem;
-    font-weight: 600;
-    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
 
   .morpho-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2.5rem;
-    width: 100%;
-    max-width: 1100px;
-    padding: 0 1rem;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
   .morpho-card {
-    background-color: #fff;
-    border-radius: 24px;
-    box-shadow: 0 8px 20px rgba(200, 180, 160, 0.15);
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: all 0.3s ease-in-out;
-
-    &:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px rgba(180, 160, 140, 0.2);
-    }
-
+    padding: 1rem;
     img {
-      width: 100%;
-      max-width: 220px;
-      height: auto;
-      border-radius: 16px;
-      margin-bottom: 1.2rem;
-      object-fit: cover;
+      height: 200px;
     }
-
     h2 {
       font-size: 1.4rem;
-      color: #5e4b3c;
-      margin-bottom: 0.6rem;
     }
-
-    p {
-      font-size: 0.95rem;
-      color: #7a6e61;
-      text-align: center;
-      margin-bottom: 1.4rem;
-      line-height: 1.4;
-    }
-
     button {
-      padding: 0.6rem 1.4rem;
-      font-size: 1rem;
-      background-color: #e6d5c3;
-      color: #5e4b3c;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-
-      &:hover {
-        background-color: #d4bfae;
-        color: #fff;
-      }
+      width: 90%;
     }
   }
 }

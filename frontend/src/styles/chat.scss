@@ -1,55 +1,117 @@
+@import 'variables';
+
 .chat-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 1rem;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  height: 80vh; // Utiliser une hauteur relative
+  max-width: 700px;
+  margin: 3rem auto;
+  background-color: $background-card; // Utiliser la couleur de carte
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-medium; // Ombre plus prononcée
+  overflow: hidden;
+  font-family: $font-body;
+  color: $text-primary;
+  animation: fadeIn $transition-speed * 2 $transition-ease; // Animation d'entrée
 }
 
 .chat-box {
-  max-height: 300px;
+  flex-grow: 1;
+  padding: 20px;
   overflow-y: auto;
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; // Espacement entre les messages
+  background-color: $color-beige-light; // Fond plus clair pour la boîte de dialogue
 }
 
 .chat-message {
-  padding: 0.6rem;
-  margin-bottom: 0.4rem;
-  border-radius: 10px;
-  max-width: 80%;
-}
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 20px; // Bordures très arrondies
+  line-height: 1.5;
+  word-wrap: break-word;
+  box-shadow: 0 2px 5px rgba($color-brown-dark, 0.08);
+  animation: slideInFromTop $transition-speed ease-out; // Animation pour chaque message
 
-.chat-message.bot {
-  background-color: #e8f0fe;
-  text-align: left;
-}
+  &.user {
+    align-self: flex-end;
+    background-color: $accent-color; // Message de l'utilisateur en couleur accent
+    color: $text-light; // Texte blanc sur fond doré
+    border-bottom-right-radius: 5px; // Forme de bulle
+  }
 
-.chat-message.user {
-  background-color: #cce5ff;
-  align-self: flex-end;
-  text-align: right;
-  margin-left: auto;
+  &.bot {
+    align-self: flex-start;
+    background-color: $color-white-pure; // Message du bot en blanc pur
+    color: $text-primary;
+    border: 1px solid $color-grey-soft; // Petite bordure subtile
+    border-bottom-left-radius: 5px; // Forme de bulle
+  }
 }
 
 .chat-form {
   display: flex;
-  gap: 0.5rem;
+  padding: 15px;
+  background-color: $color-beige-medium; // Fond du formulaire
+  border-top: 1px solid $border-color-light;
 
-  input {
-    flex: 1;
-    padding: 0.5rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+  input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid $color-brown-light;
+    border-radius: $border-radius-soft; // Plus subtil que le message
+    font-size: 1rem;
+    outline: none;
+    color: $text-primary;
+    background-color: $color-white-pure;
+    transition: border-color $transition-speed;
+
+    &:focus {
+      border-color: $accent-color; // Bordure accentuée au focus
+    }
   }
 
-  button {
-    padding: 0.5rem 1rem;
-    background-color: #5b8def;
-    color: white;
+  button[type="submit"] {
+    background-color: $accent-color;
+    color: $text-light;
     border: none;
-    border-radius: 8px;
+    border-radius: $border-radius-soft;
+    padding: 12px 20px;
+    margin-left: 10px;
     cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: $transition-smooth; // Transition globale
+
+    &:hover {
+      background-color: $accent-hover;
+      box-shadow: $shadow-gold;
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: none;
+    }
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInFromTop {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chat-container {
+    margin: 1rem;
+    height: 85vh;
   }
 }

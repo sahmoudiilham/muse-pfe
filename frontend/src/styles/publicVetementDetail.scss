@@ -1,0 +1,83 @@
+@import 'variables';
+
+.public-vetement-detail-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: $background-card;
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-medium;
+  font-family: $font-body;
+  color: $text-primary;
+  text-align: center;
+  animation: fadeIn $transition-speed * 2 $transition-ease;
+}
+
+.vetement-name-public {
+  font-family: $font-display;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: $color-brown-dark;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.vetement-image-public {
+  width: 100%;
+  max-height: 500px; // Limite la hauteur de l'image
+  object-fit: contain; // Garde les proportions et s'assure que l'image est entièrement visible
+  border-radius: $border-radius-soft;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 20px rgba($color-brown-dark, 0.15); // Ombre prononcée
+}
+
+.vetement-category-public {
+  font-size: 1.1rem;
+  color: $text-secondary;
+  margin-bottom: 1rem;
+  strong {
+    color: $text-primary;
+    font-weight: 600;
+  }
+}
+
+.public-detail-message {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 1.2rem;
+  color: $text-secondary;
+  background-color: $background-card;
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-light;
+  margin-top: 3rem;
+
+  &.error-message {
+    color: red;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .public-vetement-detail-container {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .vetement-name-public {
+    font-size: 2rem;
+  }
+
+  .vetement-image-public {
+    height: 300px;
+  }
+
+  .vetement-category-public {
+    font-size: 1rem;
+  }
+}

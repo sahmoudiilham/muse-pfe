@@ -1,13 +1,298 @@
-.favoris-page {
-  padding: 2rem;
-  h2 {
-    font-size: 2rem;
-    color: #c44f7a;
+@import 'variables';
+
+.favoris-container {
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+  font-family: $font-body;
+  color: $text-primary;
+  animation: fadeIn #{$transition-speed * 2} #{$transition-ease};
+}
+
+.favoris-title {
+  font-family: $font-display;
+  font-size: 2.8rem;
+  font-weight: 700;
+  text-align: center;
+  color: $color-brown-dark;
+  margin-bottom: 2.5rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: $accent-color;
+    border-radius: 2px;
+  }
+}
+
+.loading-message,
+.empty-favorites-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: $text-secondary;
+  padding: 50px 20px;
+  background-color: $background-card;
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-light;
+  margin-top: 3rem;
+}
+
+.favoris-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.favoris-card {
+  background: $background-card;
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-light;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform $transition-speed $transition-ease, box-shadow $transition-speed $transition-ease;
+  overflow: hidden;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: $shadow-medium;
   }
 
-  p {
-    font-size: 1.1rem;
+  &-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 4px 10px rgba($color-brown-dark, 0.15);
+  }
+
+  &-name {
+    font-family: $font-display;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.5rem 0 0.8rem;
+    color: $color-brown-dark;
+    text-align: center;
+  }
+
+  &-category {
+    margin: 0.3rem 0 1rem;
+    color: $text-secondary;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .favoris-actions {
+    display: flex;
+    gap: 15px;
     margin-top: 1rem;
-    color: #555;
+    width: 100%;
+    justify-content: center;
+
+    .favoris-card-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: $transition-smooth;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px rgba($color-brown-dark, 0.1);
+
+      &.delete-button {
+        background-color: lighten($color-brown-light, 15%);
+        color: $color-brown-dark;
+
+        &:hover {
+          background-color: lighten($color-brown-light, 10%);
+          transform: translateY(-2px);
+          box-shadow: $shadow-light;
+        }
+      }
+
+      &.share-button {
+        background-color: $accent-color;
+        color: $text-light;
+
+        &:hover {
+          background-color: $accent-hover;
+          transform: translateY(-2px);
+          box-shadow: $shadow-gold;
+        }
+      }
+
+      .trash-icon, .share-icon {
+        font-size: 1.1em;
+      }
+    }
+  }
+
+  .share-options {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $background-card;
+    padding: 1rem;
+    border-top: 1px solid $border-color-light;
+    box-shadow: 0 -5px 15px rgba($color-brown-dark, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform $transition-speed $transition-ease, opacity $transition-speed $transition-ease;
+    z-index: 10;
+    border-bottom-left-radius: $border-radius-soft;
+    border-bottom-right-radius: $border-radius-soft;
+
+    .share-text {
+      font-size: 0.9em;
+      color: $text-secondary;
+      margin-bottom: 5px;
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+
+      .SocialMediaShareButton {
+        transition: transform 0.2s ease-out;
+
+        &:hover {
+          transform: translateY(-3px);
+        }
+      }
+    }
+
+    .copy-link-container {
+      display: flex;
+      width: 100%;
+      gap: 5px;
+
+      .share-link-input {
+        flex-grow: 1;
+        padding: 8px 12px;
+        border: 1px solid $color-brown-light;
+        border-radius: 8px;
+        font-size: 0.9em;
+        background-color: $color-white-pure;
+        color: $text-primary;
+        outline: none;
+      }
+
+      .copy-link-button {
+        background-color: $color-brown-dark;
+        color: $text-light;
+        border: none;
+        border-radius: 8px;
+        padding: 8px 15px;
+        cursor: pointer;
+        font-size: 0.9em;
+        font-weight: 500;
+        transition: $transition-smooth;
+
+        &:hover {
+          background-color: lighten($color-brown-dark, 10%);
+        }
+      }
+    }
+  }
+
+  &.favoris-card.show-share .share-options {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .favoris-container {
+    padding: 0 1rem;
+    margin-top: 2rem;
+  }
+
+  .favoris-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .favoris-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    padding: 1rem 0;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .favoris-card {
+    background: linear-gradient(to bottom, $background-card, lighten($background-card, 3%));
+    border-radius: $border-radius-soft;
+    box-shadow: 0 12px 24px rgba($color-brown-dark, 0.08);
+    padding: 2rem;
+    max-width: 100%;
+    min-height: 520px;
+
+    &:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 20px 35px rgba($color-brown-dark, 0.12);
+    }
+
+    &-image {
+      height: 280px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 6px 15px rgba($color-brown-dark, 0.1);
+    }
+
+    &-name {
+      font-size: 1.7rem;
+      margin-bottom: 0.8rem;
+    }
+
+    &-category {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .favoris-actions {
+      margin-top: auto;
+      width: 100%;
+      justify-content: space-between;
+      gap: 1.2rem;
+
+      .favoris-card-button {
+        flex: 1;
+        padding: 0.9rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 50px;
+      }
+    }
+  }
+}
+
+/* Animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

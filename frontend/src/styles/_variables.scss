@@ -1,6 +1,49 @@
-$bg: rgba(255, 255, 255, 0.4); // Soft transparent
-$bg-blur: blur(12px);
-$text: #2e2e2e;
-$accent: #c4a995;
-$hover: #f3ece8;
-$font: 'Poppins', sans-serif;
+// src/styles/_variables.scss
+
+// --- Base Colors (Nude & Chic Palette) ---
+$color-beige-light:   #FAF9F7;  // Fond ultra doux, beige clair presque blanc cassé
+$color-beige-medium:  #f9f5ee;  // Beige naturel, parfait pour les sections / cartes
+$color-brown-light:   #B8ADA3;  // Taupe doux pour les textes secondaires ou contours
+$color-brown-dark:    #4E463F;  // Brun profond et net, idéal pour titres, textes forts
+$color-white-pure:    #FFFFFF;  // Blanc pur, classique pour éléments clés et contrastes
+$color-ivory:         #FDFBF6;  // Ivoire laiteux, pour des zones de repos visuel
+$color-gold-accent:   #D4AF7F;  // Or champagne doux, luxe discret pour icônes ou détails
+$color-gold-light:    #F5E4C3;  // Or clair subtil, parfait pour hover et reflets lumineux
+$color-grey-soft:     #E0DEDA;  // Gris perle, parfait pour séparateurs non intrusifs
+$color-nude:          #D9CFC3;  // Nude neutre moderne, très élégant pour fonds ou boutons
+
+
+
+
+// --- Text Colors ---
+$text-primary: $color-brown-dark;  // Texte principal en marron foncé
+$text-secondary: $color-brown-light; // Texte secondaire en marron clair/taupe
+$text-light: $color-white-pure;   // Texte sur fonds sombres
+$text-dark: #333333;
+// --- Accent Colors ---
+$accent-color: $color-gold-accent; // Accent doré pour les boutons, liens actifs
+$accent-hover: $color-gold-light;  // Or plus clair pour l'état hover
+
+// --- Backgrounds ---
+$background-main: $color-beige-light; // Fond de page principal
+$background-card: $color-beige-medium; // Fond des cartes et modules
+$background-dark-overlay: rgba($color-brown-dark, 0.7); // Pour les overlays sombres mais doux
+
+// --- Borders & Shadows ---
+$border-radius-soft: 12px;       // Bordures arrondies douces
+$border-color-light: $color-brown-light; // Bordure très discrète
+$shadow-light: 0 4px 12px rgba($color-brown-dark, 0.1);    // Ombre douce
+$shadow-medium: 0 8px 25px rgba($color-brown-dark, 0.15);  // Ombre plus prononcée
+$shadow-gold: 0 5px 15px rgba($color-gold-accent, 0.25); // Ombre accentuée dorée
+
+// --- Fonts ---
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap'); // Élégant pour les titres
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap'); // Moderne et lisible pour le corps
+
+$font-display: 'Playfair Display', serif; // Pour les titres, un aspect luxueux
+$font-body: 'Montserrat', sans-serif;    // Pour le texte courant, moderne et clair
+
+// --- Transitions (for animations) ---
+$transition-speed: 0.3s;
+$transition-ease: ease-in-out;
+$transition-smooth: all $transition-speed $transition-ease;

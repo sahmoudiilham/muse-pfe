@@ -1,0 +1,110 @@
+@import 'variables';
+
+.profile-container {
+  max-width: 800px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: $background-card;
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-medium;
+  font-family: $font-body;
+  color: $text-primary;
+  text-align: center;
+  animation: fadeIn $transition-speed * 2 $transition-ease;
+}
+
+.profile-title {
+  font-family: $font-display;
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: $color-brown-dark;
+  margin-bottom: 2rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 3px;
+    background-color: $accent-color;
+    border-radius: 2px;
+  }
+}
+
+.profile-details {
+  margin-top: 2rem;
+  text-align: left;
+  line-height: 2;
+  font-size: 1.1rem;
+
+  p {
+    margin-bottom: 10px; // Espacement entre les lignes
+    color: $text-secondary;
+    strong {
+      color: $text-primary; // Nom des champs plus foncé
+      font-weight: 600;
+    }
+  }
+}
+
+.profile-loading {
+  text-align: center;
+  padding: 50px 20px;
+  font-size: 1.2rem;
+  color: $text-secondary; // Texte visible en couleur secondaire
+  background-color: $background-card;
+  border-radius: $border-radius-soft;
+  box-shadow: $shadow-light;
+  margin-top: 3rem;
+}
+
+.edit-profile-btn {
+  background-color: $accent-color;
+  color: $text-light;
+  border: none;
+  border-radius: 30px;
+  padding: 0.8rem 2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: $transition-smooth;
+  box-shadow: $shadow-gold;
+  margin-top: 2.5rem;
+
+  &:hover {
+    background-color: $accent-hover;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba($color-gold-light, 0.4);
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .profile-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .profile-details {
+    font-size: 1rem;
+  }
+
+  .edit-profile-btn {
+    width: 90%;
+    font-size: 0.95rem;
+  }
+}

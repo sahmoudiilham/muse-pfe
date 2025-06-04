@@ -14,4 +14,9 @@ class Vetement extends Model
     {
         return $this->belongsTo(Morphology::class);
     }
+
+    public function favoris()
+    {
+        return $this->hasMany(Favori::class);
+    }
 }

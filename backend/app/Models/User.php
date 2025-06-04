@@ -57,5 +57,9 @@ public function favoris() {
 public function visage() {
     return $this->hasOne(Visage::class);
 }
+public function isAdmin()
+{
+    return $this->role === 'admin';
+}
 
 }

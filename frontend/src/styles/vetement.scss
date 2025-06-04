@@ -1,36 +1,41 @@
-@import "./variables"; // استعملنا المتغيرات ديالك إلى عندك
+@import 'variables';
 
 .vetements-container {
-  max-width: 1200px;
-  margin: 2rem auto;
-  padding-top: 1%;
-  font-family: $font;  // استعملنا نفس الخط
-  color: $text; // نص باللون الأساسي ديالك
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  padding: 3rem 1rem;
+  background-color: $background-main;
+  font-family: $font-body;
+  color: $text-primary;
+  text-align: center;
+  animation: fadeIn $transition-speed * 2 $transition-ease;
+
   h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #5a4a42; // لون بني هادي ناعم
-    text-align: center;
+    font-family: $font-display;
+    font-size: 2.5rem;
+    color: $color-brown-dark;
+    margin-bottom: 2rem;
+    animation: slideInFromTop $transition-speed ease-out;
   }
 
-  button {
-    display: block;
-    margin: 0 auto 2rem;
-    background-color: #d6bfa6; // لون نود دافئ
-    color: #5a4a42;
+  > button {
+    background-color: $color-nude;
+    color: $color-brown-dark;
     font-weight: 600;
     border: none;
     border-radius: 25px;
     padding: 0.6rem 1.8rem;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(214, 191, 166, 0.3);
+    box-shadow: $shadow-light;
+    margin-bottom: 2rem;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 
     &:hover {
-      background-color: #b89a81;
-      box-shadow: 0 6px 12px rgba(184, 154, 129, 0.5);
+      background-color: darken($color-nude, 10%);
+      box-shadow: $shadow-medium;
     }
   }
 
@@ -38,22 +43,24 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
   }
 
   .vetement-card {
-    background: rgba(246, 240, 233, 0.8); // خلفية ناعمة نودية شفافة
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(184, 154, 129, 0.15);
-    padding: 1rem;
+    background: $background-card;
+    border-radius: $border-radius-soft;
+    box-shadow: $shadow-light;
+    padding: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    transition: transform $transition-speed $transition-ease, box-shadow $transition-speed $transition-ease;
+    animation: fadeIn $transition-speed * 3 $transition-ease;
 
     &:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 10px 25px rgba(184, 154, 129, 0.35);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: $shadow-medium;
     }
 
     img {
@@ -65,25 +72,21 @@
       box-shadow: 0 4px 8px rgba(214, 191, 166, 0.4);
     }
 
-    p {
-      margin: 0.3rem 0;
-      color: #7d6b5c; // لون بني فاتح للنصوص الثانوية
-      font-size: 0.9rem;
-      font-weight: 600;
-      user-select: none;
+    h2 {
+      font-family: $font-display;
+      font-size: 1.4rem;
+      color: $color-brown-dark;
+      margin: 0.5rem 0 0.8rem;
     }
 
-    h2 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin: 0.5rem 0 0.8rem;
-      color: #5a4a42;
-      text-align: center;
+    p {
+      font-size: 0.95rem;
+      color: $text-secondary;
+      margin-bottom: 1rem;
     }
 
     button {
-      background-color: #cbb49a;
-      color: #5a4a42;
+      background-color: lighten($color-nude, 5%);      color: $color-brown-dark;
       border: none;
       border-radius: 20px;
       padding: 0.5rem 1.5rem;
@@ -92,19 +95,30 @@
       transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #b39b7f;
+        background-color: darken($color-nude, 5%);
       }
     }
   }
 }
 
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .vetements-container {
-    padding: 0 1rem;
+    padding: 2rem 1rem;
 
     h1 {
-      font-size: 1.6rem;
+      font-size: 2rem;
     }
 
     .vetements-grid {

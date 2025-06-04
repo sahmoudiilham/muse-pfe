@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('role')->default('user');
             $table->foreignId('morphology_id')->nullable()->constrained('morphologies')->nullOnDelete();
             $table->foreignId('palette_id')->nullable()->constrained('palettes')->nullOnDelete();
             $table->rememberToken();

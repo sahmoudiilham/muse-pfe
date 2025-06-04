@@ -1,9 +1,12 @@
+@import 'variables';
+
 .footer {
-  background-color: #f0f0f0;
+  background-color: $color-brown-dark; // Fond du footer en marron foncé
+  color: $text-light; // Texte clair
   text-align: center;
-  padding: 1rem 0;
+  padding: 1.5rem 1rem;
+  font-family: $font-body;
   font-size: 0.9rem;
-  color: #555;
-  margin-top: 2rem;
-  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 10px rgba($color-brown-dark, 0.1); // Ombre subtile vers le haut
+  margin-top: 5rem; // Pour espacer du contenu au-dessus
 }

@@ -12,30 +12,47 @@ import Coiffure from "../pages/Coiffure";
 import Lunette from "../pages/Lunette";
 import ChatIA from "../components/ChatIA";
 import PrivateRoute from "../components/PrivateRoute";
+import Profile from "../pages/Profile";
+import PublicVetementDetail from "../pages/PublicVetementDetail";
+
+// Admin Imports
+import AdminRoute from "../components/AdminRoute";
+import AdminLayout from "../admin/AdminLayout";
+import Users from "../admin/Users";
+import AdminFavoris from "../admin/Favoris";
+import Palettes from "../admin/Palette";
+
+import Morphologies from "../admin/Morphologies";
+import State from "../admin/State";
 
 const AppRouter = () => {
   return (
     <Routes>
-      {/* Rediriger la page racine vers login */}
+      {/* Redirect root to login */}
       <Route path="/" element={<Navigate to="/login" />} />
 
-      {/* Public */}
+      {/* Public Routes */}
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/vetements/public/:id" element={<PublicVetementDetail />} />
 
       {/* Protected Routes */}
-      import PrivateRoute from "../components/PrivateRoute";
-
-//...
-<Route
-  path="/home"
-  element={
-    <PrivateRoute>
-      <Home />
-    </PrivateRoute>
-  }
-/>
-
+      <Route
+        path="/home"
+        element={
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        }
+      />
       <Route
         path="/morphologie"
         element={
@@ -100,6 +117,22 @@ const AppRouter = () => {
           </PrivateRoute>
         }
       />
+
+      {/* Admin Routes */}
+      <Route
+        path="/admin/*"
+        element={
+          <AdminRoute>
+            <AdminLayout />
+          </AdminRoute>
+        }
+      >
+        <Route path="users" element={<Users />} />
+        <Route path="favoris" element={<AdminFavoris />} />
+        <Route path="palettes" element={<Palettes />} />
+        <Route path="morphologies" element={<Morphologies />} />
+        <Route path="stats" element={<State />} />
+      </Route>
     </Routes>
   );
 };
