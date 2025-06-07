@@ -3,10 +3,10 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
-import Morphologie from "../pages/Morphologie";
-import Palette from "../pages/Palette";
+import Morphologie from "../pages/Morphologie.jsx";
+import Palette from "../pages/Palette.jsx";
 import Vetements from "../pages/Vetement";
-import Favoris from "../pages/Favoris";
+import Favoris from "../pages/Favoris.jsx";
 import Visage from "../pages/Visage";
 import Coiffure from "../pages/Coiffure";
 import Lunette from "../pages/Lunette";
@@ -19,11 +19,11 @@ import PublicVetementDetail from "../pages/PublicVetementDetail";
 import AdminRoute from "../components/AdminRoute";
 import AdminLayout from "../admin/AdminLayout";
 import Users from "../admin/Users";
-import AdminFavoris from "../admin/Favoris";
-import Palettes from "../admin/Palette";
+import AdminFavoris from "../admin/AdminFavoris";
+import AdminPalettes from "../admin/AdminPalettes";
+import AdminMorphologies from "../admin/AdminMorphologies";
+import AdminStats from "../admin/AdminStats";
 
-import Morphologies from "../admin/Morphologies";
-import State from "../admin/State";
 
 const AppRouter = () => {
   return (
@@ -129,9 +129,9 @@ const AppRouter = () => {
       >
         <Route path="users" element={<Users />} />
         <Route path="favoris" element={<AdminFavoris />} />
-        <Route path="palettes" element={<Palettes />} />
-        <Route path="morphologies" element={<Morphologies />} />
-        <Route path="stats" element={<State />} />
+        <Route path="palettes" element={<AdminPalettes />} />
+        <Route path="morphologies" element={<AdminMorphologies />} />
+        <Route path="stats" element={<AdminStats />} />
       </Route>
     </Routes>
   );

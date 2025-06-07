@@ -1,11 +1,10 @@
-// src/context/AuthContext.jsx
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null); // Stocke l'objet utilisateur complet ou null
+  const [user, setUser] = useState(null);
   const [loadingAuth, setLoadingAuth] = useState(true);
 
   const setAuthToken = useCallback((token) => {
@@ -25,11 +24,14 @@ export const AuthProvider = ({ children }) => {
       try {
         const response = await axios.get("http://localhost:8000/api/user");
         setUser(response.data);
+        console.log("USER ROLE:", response.data.role);
       } catch (error) {
         console.error("Erreur lors de la récupération de l'utilisateur:", error);
         setUser(null);
         setAuthToken(null);
       }
+    } else {
+      setUser(null);
     }
     setLoadingAuth(false);
   }, [setAuthToken]);
@@ -44,26 +46,22 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    const token = localStorage.getItem("authToken"); // Récupère le token pour l'envoi explicite
+    const token = localStorage.getItem("authToken");
     if (token) {
       try {
-        // L'en-tête Authorization sera automatiquement ajouté par Axios si setAuthToken a été appelé
-        // Mais l'envoyer explicitement comme vous le faites est aussi sûr.
         await axios.post("http://localhost:8000/api/logout", {}, {
-           headers: { Authorization: `Bearer ${token}` } // Facultatif si déjà dans les defaults d'Axios
+          headers: { Authorization: `Bearer ${token}` }
         });
         console.log("Déconnexion côté serveur réussie.");
       } catch (error) {
         console.error("Erreur lors de la déconnexion côté serveur:", error);
       }
     }
-    setAuthToken(null); // Supprime le token de localStorage et des defaults Axios
-    setUser(null);      // Efface l'utilisateur de l'état
+    setAuthToken(null);
+    setUser(null);
   };
 
-  // Calculez isAuthenticated en fonction de l'état de user et loadingAuth
-  // L'utilisateur est authentifié si 'user' n'est pas null ET que le chargement initial est terminé.
-  const isAuthenticated = !!user; // Simplement !!user est généralement suffisant une fois loadingAuth géré.
+  const isAuthenticated = !!user;
 
   return (
     <AuthContext.Provider 
@@ -71,8 +69,9 @@ export const AuthProvider = ({ children }) => {
         user, 
         login, 
         logout, 
+        fetchUser,  // هنا صدرنا fetchUser
         loadingAuth, 
-        isAuthenticated // <- Fournir isAuthenticated ici
+        isAuthenticated 
       }}
     >
       {children}

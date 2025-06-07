@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,23 +10,19 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-    
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
+     * Les attributs pouvant être remplis en masse.
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role', // ✅ ضفنا role
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
+     * Les attributs cachés dans les réponses JSON.
      */
     protected $hidden = [
         'password',
@@ -35,31 +30,57 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * Les attributs castés automatiquement.
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function morphologie() {
-    return $this->belongsTo(Morphology::class);
-}
 
-public function palette() {
-    return $this->belongsTo(Palette::class);
-}
+    /**
+     * ✅ Les attributs à ajouter automatiquement à la réponse JSON.
+     */
+    protected $appends = ['role'];
 
-public function favoris() {
-    return $this->hasMany(Favori::class);
-}
+    /**
+     * ✅ Accessor pour retourner role (مهم باش يبانو فـ /api/user)
+     */
+    
+    /**
+     * ✅ Vérifie si l'utilisateur est admin
+     */
+    public function isAdmin()
+    {
+        return $this->is_admin == 1;
+    }
 
-public function visage() {
-    return $this->hasOne(Visage::class);
-}
-public function isAdmin()
+    // ✅ Relations
+    public function morphologie()
+    {
+        return $this->belongsTo(Morphology::class);
+    }
+
+    public function palette()
+    {
+        return $this->belongsTo(Palette::class);
+    }
+
+    public function favoris()
+    {
+        return $this->hasMany(Favori::class);
+    }
+
+    public function visage()
+    {
+        return $this->hasOne(Visage::class);
+    }
+
+    // يمكنك حذف هذه السطرين إذا لم تكن تقوم بأي تغيير خاص:
+
+
+public function getRoleAttribute()
 {
-    return $this->role === 'admin';
+    return $this->attributes['role'];
 }
+
 
 }

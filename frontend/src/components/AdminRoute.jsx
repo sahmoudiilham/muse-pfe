@@ -1,10 +1,15 @@
-import { useAuth } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const AdminRoute = ({ children }) => {
   const { user, loadingAuth } = useAuth();
-  if (loadingAuth) return <div>Chargement...</div>;
-  if (!user || user.role !== "admin") return <Navigate to="/login" />;
+
+  if (loadingAuth) return <div>Loading...</div>;
+
+  if (!user || user.role !== "admin") {
+    return <Navigate to="/home" />;
+  }
+
   return children;
 };
 

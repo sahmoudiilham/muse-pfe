@@ -2,21 +2,28 @@ import { BrowserRouter } from "react-router-dom";
 import AppRouter from "./router/AppRouter";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import axios from "axios";
+import { AuthProvider } from "./context/AuthContext";
+import { useAuth } from "./context/AuthContext"; // ✅ مهم
+import AdminNavbar from "./admin/AdminNavbar"; // ✅ مهم
 
-function App() {
-  const token = localStorage.getItem("token");
-  if (token) {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  }
+function AppContent() {
+  const { user } = useAuth();
 
   return (
+    <div className="app">
+      {user?.role === "admin" ? <AdminNavbar /> : <Navbar />}
+      <AppRouter />
+      <Footer />
+    </div>
+  );
+}
+
+function App() {
+  return (
     <BrowserRouter>
-      <div className="app">
-        <Navbar />
-        <AppRouter />
-        <Footer />
-      </div>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
     </BrowserRouter>
   );
 }

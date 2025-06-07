@@ -26,10 +26,16 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Utilisateur inscrit avec succès',
-            'token'   => $token,
-            'user'    => $user,
-        ], 201);
+    'message' => 'Connexion réussie',
+    'token'   => $token,
+    'user'    => [
+        'id'    => $user->id,
+        'name'  => $user->name,
+        'email' => $user->email,
+        'role'  => $user->role,  // مهم ترجع role هنا
+    ],
+]);
+
     }
 
     public function login(Request $request)
@@ -50,10 +56,16 @@ class AuthController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
-            'message' => 'Connexion réussie',
-            'token'   => $token,
-            'user'    => $user,
-        ]);
+    'message' => 'Connexion réussie',
+    'token'   => $token,
+    'user'    => [
+        'id'    => $user->id,
+        'name'  => $user->name,
+        'email' => $user->email,
+        'role'  => $user->role,  // مهم ترجع role هنا
+    ],
+]);
+
     }
 
     public function logout(Request $request)
@@ -64,4 +76,6 @@ class AuthController extends Controller
             'message' => 'Déconnexion réussie',
         ]);
     }
+
+    
 }
